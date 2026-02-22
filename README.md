@@ -123,8 +123,4 @@ A sample contract is provided in `data/sample_contract.txt`. Upload it directly 
 
 This tool is for **demonstration purposes only** and does not constitute legal advice. Always consult a qualified lawyer before signing any contract.
 
----
 
-## 📄 License
-
-MIT © [AkaHarshit](https://github.com/AkaHarshit)
