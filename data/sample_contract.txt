@@ -1,0 +1,72 @@
+CONSULTING SERVICES AGREEMENT
+
+This Consulting Services Agreement ("Agreement") is entered into as of January 1, 2024, between
+Acme Corporation ("Client") and LegalTech Solutions Ltd. ("Consultant").
+
+1. SERVICES
+
+The Consultant agrees to provide software consulting services as described in Schedule A attached hereto.
+The Client agrees to pay the Consultant a fixed monthly retainer of $10,000 USD.
+
+2. TERM AND TERMINATION
+
+This Agreement shall commence on the Effective Date and continue for a period of twelve (12) months.
+Either party may terminate this Agreement upon thirty (30) days written notice.
+Client may terminate immediately for cause, with forfeiture of any retainer amounts paid in advance.
+
+3. INDEMNIFICATION
+
+Consultant shall indemnify, defend, and hold harmless Client and its officers, directors, employees,
+and agents from and against any and all claims, liabilities, damages, penalties, and expenses
+arising out of or related to Consultant's gross negligence or willful misconduct.
+
+4. LIMITATION OF LIABILITY
+
+In no event shall either party be liable for any indirect, incidental, or consequential damages.
+The total liability of Consultant under this Agreement shall not exceed the amounts paid in the
+preceding three (3) months. Notwithstanding the foregoing, Consultant assumes unlimited liability
+for breaches of confidentiality obligations.
+
+5. INTELLECTUAL PROPERTY
+
+All work product created by Consultant under this Agreement shall be irrevocable, perpetual,
+and royalty-free. Client shall have full assignment and transfer of rights to all deliverables,
+including any sublicense rights. Consultant hereby waives any moral rights to such work product.
+
+6. CONFIDENTIALITY
+
+Each party agrees to maintain the confidentiality of the other party's proprietary information and
+trade secrets. Consultant shall not disclose any confidential information to third parties without
+prior written consent. This obligation shall survive termination of the Agreement.
+
+7. NON-SOLICITATION
+
+During the term and for a period of two (2) years following termination, Consultant agrees to a
+non-solicitation and non-compete provision restricting Consultant from providing services to
+Client's direct competitors. This constitutes a restraint of trade enforceable under governing law.
+
+8. PAYMENT TERMS
+
+Client shall pay all invoices within thirty (30) days of receipt. Late payment shall accrue
+compound interest at a rate of 1.5% per month. A surcharge of 5% shall be applied to amounts
+outstanding beyond sixty (60) days. Client may not withhold or deduct any amounts from payments.
+
+9. DISPUTE RESOLUTION
+
+Any dispute arising out of this Agreement shall be resolved exclusively through binding arbitration
+under the rules of the American Arbitration Association. The parties hereby waive any right to
+jury trial. The arbitral award shall be final and binding under the jurisdiction of New York.
+
+10. GENERAL PROVISIONS
+
+This Agreement constitutes the entire understanding between the parties. Any amendments must be in
+writing. This Agreement shall be governed by the laws of the State of New York. Funds of $50,000
+shall be held in escrow pending completion of milestones. Client may deduct milestone shortfalls
+from final payment.
+
+11. STANDARD DELIVERY TERMS
+
+Consultant will make reasonable commercial efforts to deliver services on time.
+The Consultant team will maintain professional conduct throughout the engagement.
+Regular status updates will be provided via email every two weeks.
+Both parties agree to cooperate in good faith to resolve any operational issues.
