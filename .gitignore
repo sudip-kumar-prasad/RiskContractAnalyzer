@@ -17,3 +17,5 @@ models/
 *.egg-info/
 dist/
 build/
+
+docs/report.txt

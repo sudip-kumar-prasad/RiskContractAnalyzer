@@ -1,4 +1,4 @@
-# ⚖️ Legal Contract Risk Analyzer
+#  Legal Contract Risk Analyzer
 
 > AI-powered, clause-level risk detection for legal documents — built with Streamlit.
 
@@ -8,7 +8,7 @@
 
 ---
 
-## 🚀 Overview
+## Overview
 
 The **Legal Contract Risk Analyzer** is a single-page Streamlit web application that allows users to upload PDF or TXT contract documents, automatically splits them into individual clauses, and predicts which clauses carry legal risk using a rule-based NLP pipeline.
 
@@ -25,7 +25,7 @@ The **Legal Contract Risk Analyzer** is a single-page Streamlit web application 
 
 ---
 
-## 🏗️ Project Architecture
+## Project Architecture
 
 ```
 RiskContractAnalyzer/
@@ -105,7 +105,7 @@ A sample contract is provided in `data/sample_contract.txt`. Upload it directly 
 
 ---
 
-## 📦 Dependencies
+## Dependencies
 
 | Package | Purpose |
 |---|---|
