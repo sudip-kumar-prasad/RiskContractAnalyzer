@@ -55,7 +55,7 @@ RiskContractAnalyzer/
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/AkaHarshit/RiskContractAnalyzer.git
+git clone https://github.com/sudip-kumar-prasad/RiskContractAnalyzer.git
 cd RiskContractAnalyzer
 ```
 
