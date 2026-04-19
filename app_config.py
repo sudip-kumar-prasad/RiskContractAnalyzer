@@ -7,6 +7,14 @@ APP_TITLE = "Legal Contract Risk Analyzer"
 APP_SUBTITLE = "AI-powered clause-level risk detection for legal documents"
 APP_VERSION = "1.0.0"
 
+TEAM_NAME = "MindMatrix"
+TEAM_MEMBERS = [
+    {"name": "Sudip Kumar Prasad", "urn": "2024-B-01112005A"},
+    {"name": "Harshit Singh", "urn": "2024-B-21082007"},
+    {"name": "Garv Gogna", "urn": "2024-B-15062006A"},
+    {"name": "Yash Shriram Lahase", "urn": "2024-B-17112006C"}
+]
+
                                                                              
                                                          
                                                                              

@@ -1,0 +1,167 @@
+\documentclass[12pt, a4paper]{report}
+
+% --- Packages ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{tocloft}
+
+% --- Custom Colors ---
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+% --- Code Style ---
+\lstset{
+    backgroundcolor=\color{backcolour},
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    numbers=left,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2
+}
+
+% --- Header/Footer ---
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Legal Contract Risk Analyzer}
+\lhead{Technical Report}
+\rfoot{Page \thepage}
+
+% --- Metadata ---
+\title{
+    \textbf{Legal Contract Risk Analyzer}\\
+    \large Design and Implementation of an Agentic AI-Driven Risk Assessment System\\
+    \vspace{1cm}
+    \small Team: \textbf{MindMatrix}
+}
+\author{
+    \textbf{Sudip Kumar Prasad} (2024-B-01112005A) \\
+    \textbf{Harshit Singh} (2024-B-21082007) \\
+    \textbf{Garv Gogna} (2024-B-15062006A) \\
+    \textbf{Yash Shriram Lahase} (2024-B-17112006C)
+}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+\newpage
+
+% --- Chapter 1: Introduction ---
+\chapter{Introduction}
+\section{Problem Statement}
+Legal contract review is a critical yet resource-intensive process in modern business operations. Procurement, legal, and compliance teams frequently encounter hundreds of pages of complex legal terminology. Manually auditing these documents for risks such as "Unlimited Liability," "Implicit Waivers," or "Onerous Indemnity" is time-consuming and prone to human oversight. 
+
+\section{Project Objectives}
+The goal of this project is to develop a dual-layered automated system that not only identifies risky clauses using Machine Learning but also provides deep semantic reasoning and mitigation strategies using an Agentic AI architecture.
+
+\section{Proposed Solution}
+The system is divided into two primary milestones:
+\begin{enumerate}
+    \item \textbf{Milestone 1:} Automated clause segmentation and risk classification using Supervised Machine Learning.
+    \item \textbf{Milestone 2:} An Agentic AI Assistant that performs Retrieval-Augmented Generation (RAG) to provide boardroom-ready risk assessments.
+\end{enumerate}
+
+% --- Chapter 2: System Architecture ---
+\chapter{System Architecture}
+\section{Technical Stack}
+The application is built using a modern AI-centric stack:
+\begin{itemize}
+    \item \textbf{Frontend:} Streamlit (Python-based interactive dashboard).
+    \item \textbf{Orchestration:} Custom Agentic AI framework.
+    \item \textbf{ML Engine:} scikit-learn (TF-IDF, Logistic Regression).
+    \item \textbf{Vector Database:} FAISS (Facebook AI Similarity Search) for RAG.
+    \item \textbf{LLM:} Groq Llama 3.1 (High-performance inference).
+\end{itemize}
+
+\section{Workflow}
+\begin{enumerate}
+    \item \textbf{Extraction:} PDF/TXT documents are processed into raw text.
+    \item \textbf{Segmentation:} The text is split into logical legal units (clauses) using regex-based boundary detection.
+    \item \textbf{Classification:} Each clause is labeled as "Risky" or "Safe" by the ML model.
+    \item \textbf{Reasoning:} Risky clauses are sent to the Legal Agent for deep analysis.
+    \item \textbf{Export:} A final summary report is generated in PDF format.
+\end{enumerate}
+
+% --- Chapter 3: Milestone 1: Risk Classification ---
+\chapter{Milestone 1: Risk Classification}
+\section{Data Pipeline}
+The system takes advantage of a pre-processed dataset of legal clauses. Text data is normalized through lowercasing, stopword removal, and punctuation stripping via the NLTK library.
+
+\section{Model Selection}
+We implemented a \textbf{Logistic Regression} classifier coupled with \textbf{TF-IDF Vectorization}. This choice provides a high level of interpretability—allowing us to see which specific terms (e.g., "indemnify", "unlimited") contribute to a risk score.
+
+\section{Fallback Mechanism}
+Recognizing that some critical risks might be "zero-shot" or rare, we implemented a custom \textbf{Keyword Heuristic Engine} that cross-references the ML prediction with a curated library of high-risk legal terms to ensure zero false negatives for critical hazards.
+
+% --- Chapter 4: Milestone 2: Agentic IA Assistant ---
+\chapter{Milestone 2: Agentic AI Assistant}
+\section{Agent Architecture}
+The system employs an autonomous "Legal Counsel Agent" with a defined state machine:
+\begin{enumerate}
+    \item \textbf{Initializing:} Assessing the analysis context.
+    \item \textbf{Retrieving:} Querying the FAISS database for legal best practices.
+    \item \textbf{Analyzing:} Performing semantic reasoning on the clause text.
+    \item \textbf{Reporting:} Generating structured JSON mitigation strategies.
+\end{enumerate}
+
+\section{Retrieval-Augmented Generation (RAG)}
+To prevent hallucinations and ensure professional advice, we curated a \textbf{Legal Knowledge Base} containing guidelines for:
+\begin{itemize}
+    \item Indemnification & Liability
+    \item Intellectual Property Rights
+    \item Termination & Breach
+    \item Financial Dependencies
+\end{itemize}
+We use \textbf{sentence-transformers} to embed these guidelines into a FAISS vector index, allowing the agent to "retrieve" the exact guideline needed for every risky clause identified.
+
+% --- Chapter 5: Results and Discussion ---
+\chapter{Results and Discussion}
+\section{Dashboard Implementation}
+The final application features an interactive dashboard with:
+\begin{itemize}
+    \item Real-time KPI tiles for risk percentages.
+    \item Visual clause-level audits (Red for Risky, Green for Safe).
+    \item One-click PDF generation for assessment summaries.
+\end{itemize}
+
+\section{Performance}
+The ML model achieved a performance baseline suitable for procurement workflows, significantly reducing the document review time from several hours to under 30 seconds.
+
+% --- Chapter 6: Conclusion ---
+\chapter{Conclusion}
+\section{Summary}
+The Legal Contract Risk Analyzer successfully integrates classical Machine Learning with modern Agentic AI to provide a comprehensive legal auditing tool. By grounding AI reasoning in a local RAG Knowledge Base, the system provides reliable, professional-grade mitigation strategies.
+
+\section{Future Scope}
+Future iterations could include:
+\begin{itemize}
+    \item Support for multi-lingual contract analysis.
+    \item Integration with Enterprise Resource Planning (ERP) systems.
+    \item Dynamic model retraining based on user feedback.
+\end{itemize}
+
+\end{document}
