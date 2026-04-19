@@ -22,6 +22,8 @@ from app_config import (
     COLOUR,
     SIDEBAR_HOW_TO,
     SIDEBAR_DISCLAIMER,
+    TEAM_NAME,
+    TEAM_MEMBERS,
 )
 from utils.file_handler import extract_text_from_upload, get_file_metadata
 from utils.clause_segmenter import segment_document
@@ -145,6 +147,11 @@ def main():
         )
         
         st.markdown("---")
+        st.markdown(f"### Proposed by: {TEAM_NAME}")
+        for member in TEAM_MEMBERS:
+            st.markdown(f"**{member['name']}**  \n<small>{member['urn']}</small>", unsafe_allow_html=True)
+
+        st.markdown("---")
         st.markdown(SIDEBAR_DISCLAIMER)
 
     st.markdown(
@@ -221,9 +228,21 @@ def _render_results(analyzed_clauses, stats, meta, text, show_safe):
                 if not agent.llm.is_available:
                     st.error("Groq API key not configured. Please add it to secrets.")
                 else:
+                    status_container = st.empty()
+                    def update_status(state: AgentState):
+                        status_container.info(f"⏳ **Agent Status**: {state.value}...")
+                    
+                    agent.state_callback = update_status
+                    
                     with st.spinner("AI Agent is reasoning..."):
                         report = agent.generate_final_report(risky_clauses)
-                        st.session_state.agent_report = report
+                        if report is None or not report.get("clause_assessments"):
+                            st.error(f"Analysis failed. Error: {agent.last_error}")
+                            st.session_state.agent_report = None
+                        else:
+                            st.session_state.agent_report = report
+                    
+                    status_container.empty()
 
             if st.session_state.agent_report:
                 report = st.session_state.agent_report
