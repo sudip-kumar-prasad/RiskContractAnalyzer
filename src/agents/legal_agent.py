@@ -62,6 +62,7 @@ class LegalAgent:
                     clause_text=clause['text'],
                     guidelines="\n".join(clause['relevant_guidelines'])
                 )
+                response_text = self.llm.generate_response(prompt, system_instruction=SYSTEM_PROMPT)
                 parsed_data = self._parse_json(response_text)
                 if parsed_data:
                     clause.update(parsed_data)
@@ -76,7 +77,8 @@ class LegalAgent:
             self.report = self.generate_report(clauses)
             self.set_state(AgentState.COMPLETED)
             return self.report
-        except Exception:
+        except Exception as e:
+            self.last_error = f"System Error: {str(e)}"
             self.set_state(AgentState.ERROR)
             return None
 
