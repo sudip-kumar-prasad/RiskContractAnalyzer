@@ -76,10 +76,8 @@ def _inject_global_styles() -> None:
         .hero-title {{
             font-size: 2.8rem;
             font-weight: 800;
-            background: linear-gradient(90deg, #B8B0FF 0%, #7C6AF7 50%, #4FC3F7 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: #FFFFFF;
+            text-shadow: 0px 4px 15px rgba(124,106,247,0.4);
             margin: 0 0 8px 0;
             line-height: 1.15;
         }}
