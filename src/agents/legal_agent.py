@@ -29,7 +29,7 @@ class LegalAgent:
             self.state_callback(state)
         print(f"[Agent Status]: {state.value}")
 
-    def run_analysis(self, document_text: str, clauses: List[Dict[str, Any]]):
+    def generate_final_report(self, clauses: List[Dict[str, Any]]):
         try:
             self.set_state(AgentState.INITIALIZING)
             self.set_state(AgentState.RETRIEVING)
@@ -53,18 +53,18 @@ class LegalAgent:
                 try:
                     cleaned_response = response_text.strip().strip('`').strip('json').strip()
                     clause.update(json.loads(cleaned_response))
-                except Exception as e:
+                except Exception:
                     clause.update({
-                        "risk_severity": "Unknown",
-                        "explanation": "Failed to analyze clause.",
-                        "mitigation": "Manual review recommended."
+                        "risk_severity": "High",
+                        "explanation": "Significant risk detected. AI analysis incomplete.",
+                        "mitigation": "Manual legal review required."
                     })
 
             self.set_state(AgentState.REPORTING)
             self.report = self.generate_report(clauses)
             self.set_state(AgentState.COMPLETED)
             return self.report
-        except Exception as e:
+        except Exception:
             self.set_state(AgentState.ERROR)
             return None
 
@@ -88,8 +88,9 @@ class LegalAgent:
             }
             
         final_report = {
-            "report_metadata": report_meta,
-            "risky_clauses": clauses,
+            "contract_summary": report_meta.get("contract_summary", ""),
+            "legal_disclaimer": report_meta.get("legal_disclaimer", ""),
+            "clause_assessments": clauses,
             "analysis_history": self.history
         }
         
