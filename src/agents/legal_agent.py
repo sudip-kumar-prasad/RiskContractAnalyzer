@@ -1,6 +1,4 @@
-import enum
-import json
-import os
+import re
 from typing import List, Dict, Any, Optional
 from utils.llm_client import LLMClient
 from utils.retriever import get_relevant_guidelines
@@ -22,6 +20,18 @@ class LegalAgent:
         self.history: List[Dict[str, str]] = []
         self.state_callback = None
         self.report = {}
+        self.last_error = ""
+
+    def _parse_json(self, text: str) -> Dict[str, Any]:
+        try:
+            cleaned = text.strip().strip('`').strip('json').strip()
+            match = re.search(r'(\{.*\})', cleaned, re.DOTALL)
+            if match:
+                return json.loads(match.group(1))
+            return json.loads(cleaned)
+        except Exception as e:
+            self.last_error = str(e)
+            return {}
 
     def set_state(self, state: AgentState):
         self.state = state
@@ -49,14 +59,13 @@ class LegalAgent:
                     clause_text=clause['text'],
                     guidelines="\n".join(clause['relevant_guidelines'])
                 )
-                response_text = self.llm.generate_response(prompt, system_instruction=SYSTEM_PROMPT)
-                try:
-                    cleaned_response = response_text.strip().strip('`').strip('json').strip()
-                    clause.update(json.loads(cleaned_response))
-                except Exception:
+                parsed_data = self._parse_json(response_text)
+                if parsed_data:
+                    clause.update(parsed_data)
+                else:
                     clause.update({
                         "risk_severity": "High",
-                        "explanation": "Significant risk detected. AI analysis incomplete.",
+                        "explanation": f"Significant risk detected. Analysis error: {response_text if 'Error' in response_text else self.last_error}",
                         "mitigation": "Manual legal review required."
                     })
 
@@ -78,13 +87,11 @@ class LegalAgent:
         prompt = REPORT_SUMMARY_TEMPLATE.format(clauses_data=clauses_data)
         response_text = self.llm.generate_response(prompt, system_instruction=SYSTEM_PROMPT)
         
-        try:
-            cleaned_response = response_text.strip().strip('`').strip('json').strip()
-            report_meta = json.loads(cleaned_response)
-        except Exception as e:
+        report_meta = self._parse_json(response_text)
+        if not report_meta:
             report_meta = {
-                "contract_summary": "Error generating summary.",
-                "legal_disclaimer": "AI usage disclaimer: Manual review required."
+                "contract_summary": f"AI Analysis incomplete: {response_text if 'Error' in response_text else self.last_error}",
+                "legal_disclaimer": "AI usage disclaimer: Manual review required due to processing error."
             }
             
         final_report = {
