@@ -11,6 +11,8 @@
 
 ## Overview
 
+Live Demo - https://riskcontractanalyzer-5nmfdr4g7x4ycbyakwue28.streamlit.app/
+
 The **Legal Contract Risk Analyzer** is an end-to-end system for auditing legal documents. It combines classical Machine Learning (Milestone 1) for rapid risk flagging with Agentic Generative AI (Milestone 2) for deep semantic analysis, explanation, and mitigation strategy generation.
 
 ### Key Features
